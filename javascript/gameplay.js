@@ -107,7 +107,7 @@ window.addEventListener('load', function () {
 
   //START THE GAME
   // showCountry();
-
+  
   while(isPlaying) {
     scoreCounter = document.querySelector("#score-counter");
     attemptsCounter = document.querySelector("#attempts-counter");
