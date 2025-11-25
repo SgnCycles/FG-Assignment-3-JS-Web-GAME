@@ -1,0 +1,96 @@
+:root {
+  --border-radius: 25px;
+  --button-color: #FEA228;
+  --button-border-color: #E15201;
+  --website-main-font: "Press Start 2P", monospace, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background-image: url("/website_images/game_brackground.png");
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  font-family: var(--website-main-font);
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.frontpage-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+}
+
+.frontpage-image {
+  max-height: 500px;
+  min-width: 100px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  height: auto;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.start-game-button {
+  width: auto;
+  border-radius: 7px;
+  background-color: var(--button-color);
+  color: whitesmoke;
+  font-family: var(--website-main-font);
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 3px;
+  padding: 15px 20px;
+  border: 4px solid var(--button-border-color);
+  box-shadow: 3px 3px 0 #000;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  min-width: 100px;
+  text-decoration: none;
+}
+
+.start-game-button:hover  {
+  box-shadow: 1px 1px 0 #000;
+  background-color: rgb(169, 237, 33);
+  color: var(--button-color);
+}
+
+.start-game-button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px #000;
+}
+
+.footer {
+  color: whitesmoke;
+  padding: 50px;
+  text-align: center;
+}
+
+/* @media (min-width: 340px) and (max-width: 1024px) {
+
+} */
