@@ -98,26 +98,13 @@ window.addEventListener('load', function () {
       const typedGuessToCheck = typedGuess.toLowerCase().replace(/\s+/g, "");
       const currentCountryToCheck = currentCountry.name.toLowerCase().replace(/\s+/g, "");
       if (typedGuessToCheck === currentCountryToCheck) {
-        score+=attemptsLeft;
+        // score+=attemptsLeft;
         showCountry();
       } else {
-        attemptsLeft--;
+        // attemptsLeft--;
       }
     }
 
   //START THE GAME
-  // showCountry();
-
-  while(isPlaying) {
-    scoreCounter = document.querySelector("#score-counter");
-    attemptsCounter = document.querySelector("#attempts-counter");
-    livesCounter = document.querySelector("#attempts-counter");
-    attemptsCounter = 5;
-    livesCounter = 3;
-    scoreCounter = 0;
-    showCountry();
-      while (attemptsCounter > 0) {
-        checkGuess();
-      }
-  }
+  showCountry();
   });
