@@ -12,6 +12,23 @@
   padding: 15px;
 }
 
+
+.life-score {
+  width: 15%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.life-score.lost {
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+.heart-item {
+  width: 50px;
+  height: auto;
+}
+
 .score-section, .attempts-left-section {
   display: flex;
   justify-content: space-between;
@@ -100,6 +117,16 @@
   text-transform: uppercase;
   text-align: center;
 }
+
+/* to color the correct and incorrect input */
+.letter-circle.correct {
+  background-color: #0fd423;
+}
+
+.letter-circle.present {
+  background-color: #cae217;
+}
+/*to color the correct and incorrect input  */
 
 .country-name-content {
   margin: 20px 0 25px;
