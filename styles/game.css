@@ -1,7 +1,7 @@
 .game-body {
   background-color: #529BFF;
   background-image: none;
-  padding: 0 50px;
+  padding: 0 30px;
   height: 100%;
 }
 
@@ -45,9 +45,17 @@
 }
 
 .country-container, .instruction_and_action {
-  width: 50%;
+  /* width: 50%; */
   margin: 0 30px;
   height: 70vh;
+}
+
+.country-container {
+  width: 60%;
+}
+
+.instruction_and_action {
+  width: 40%; 
 }
 
 .country-container {
@@ -74,7 +82,7 @@
 
 .country-flag-image {
   display: block;
-  max-height: 400px;
+  max-height: 300px;
   width: auto;
   max-width: 100%;
   height: auto;
@@ -99,7 +107,6 @@
 
 .country-name-wrapper  {
   display: flex;
-  flex-wrap: wrap;
   padding: 0 20px;
 }
 
@@ -118,15 +125,15 @@
   text-align: center;
 }
 
-/* to color the correct and incorrect input */
 .letter-circle.correct {
   background-color: #0fd423;
+  border: 5px solid #046014;
 }
 
+/* do I need it? */
 .letter-circle.present {
   background-color: #cae217;
 }
-/*to color the correct and incorrect input  */
 
 .country-name-content {
   margin: 20px 0 25px;
@@ -142,7 +149,7 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin: 0 10px;  /* This creates the actual space between words */
+  margin: 0 10px;  /* This creates the space between words */
   padding: 0;
   background-color: transparent;
   border: none;
@@ -153,6 +160,10 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+}
+
+.instruction {
+  display: none;
 }
 
 .instruction.active {
@@ -169,11 +180,7 @@
   padding: 32px 16px 0;
 }
 
-.instruction {
-  display: none;
-}
-
-.country-girl-image-container.active {
+.action-image-container.active {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -181,20 +188,26 @@
   width: 100%;
 }
 
-.country-girl-image {
+.action-image-container, .girl-correct-image, .girl-incorrect-image, .you-won-image, .you-loose-image  {
+  display: none;
+}
+
+.country-girl-image.active, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active  {
+  display: flex;
   max-height: 500px;
   width: auto;
   max-width: 100%;
   height: auto;
 }
 
-.country-girl-image-container {
+.country-girl-image.hide {
   display: none;
 }
 
 .action-menu {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   width: 100%;
 }
 
