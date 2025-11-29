@@ -44,8 +44,7 @@
   margin-bottom: 30px;
 }
 
-.country-container, .instruction_and_action {
-  /* width: 50%; */
+.country-container, .instruction-and-action {
   margin: 0 30px;
   height: 70vh;
 }
@@ -54,7 +53,7 @@
   width: 60%;
 }
 
-.instruction_and_action {
+.instruction-and-action {
   width: 40%; 
 }
 
@@ -64,7 +63,6 @@
   height: 100%;
   border-radius: var(--border-radius);
   align-items: center;
-  /* background-color: #009402; */
   justify-content: space-between;
 }
 
@@ -135,6 +133,11 @@
   background-color: #cae217;
 }
 
+.letter-circle.show {
+  background-color: #3217e2;
+  border: 5px solid #120460;
+}
+
 .country-name-content {
   margin: 20px 0 25px;
 }
@@ -155,7 +158,7 @@
   border: none;
 }
 
-.instruction_and_action {
+.instruction-and-action {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -188,13 +191,14 @@
   width: 100%;
 }
 
-.action-image-container, .girl-correct-image, .girl-incorrect-image, .you-won-image, .you-loose-image  {
+.action-image-container, .girl-correct-image, .girl-incorrect-image, .you-won-image, .you-loose-image {
   display: none;
 }
 
-.country-girl-image.active, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active  {
-  display: flex;
-  max-height: 500px;
+.country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
+  margin: auto 0;
+  display: block;
+  max-height: 600px;
   width: auto;
   max-width: 100%;
   height: auto;
@@ -247,14 +251,190 @@
   box-shadow: 0 2px #000;
 }
 
-@media (min-width: 340px) and (max-width: 1024px) {
+
+@media (max-width: 600px) {
+
+  .game-body {
+    padding: 0;
+  }
+
   .header {
-    flex-direction: row;
-    justify-content: space-around;
+    flex-direction: column;
+    align-items: space-between;
+    margin: 0;
   }
 
-  .score-section, .attempts-left-section {
-    justify-content: left;
+  .heart-item {
+    width: 30px;
   }
 
+  .attempts-left-section, .score-section {
+    font-size: 1rem;
+    padding-top: 10px;
+  }
+
+  .game-main-content {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .country-container {
+    width: 100%;
+    margin: 0;
+  } 
+
+  .country-flag {
+    margin: 0;
+    padding-top: 0;
+  }
+
+  .country-flag-image {
+    max-height: 200px;
+  }
+
+  .country-name-wrapper {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+
+  .country-title, .capital-wrapper, .capital-name {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-top: 0;
+  }
+  
+  .letter-generator input {
+    height: 35px;
+    width: 36px;
+    border: 3px solid #e13707;
+    font-size: 1.1rem;
+  }
+
+  .capital-wrapper {
+    padding-bottom: 0;
+  }
+
+  .game-main-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .instruction-and-action {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
+    max-height: 200px;
+  }
+
+  .action-menu {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    width: 100%;
+    justify-items: center;
+  }
+
+  .action-button, .home-button {
+    width: 100px;
+    font-size: 0.7rem;
+    padding: 10px 0;
+    text-shadow: -1px -1px 0 #000;
+  }
+  
+  .home-button {
+    text-decoration: none;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  }
 }
+
+/* for laptop */
+/* @media (min-width: 601px) {
+
+  .game-body {
+    padding: 0;
+  }
+
+  .header {
+    margin: 0;
+    margin-bottom: 15px;
+  }
+
+  .heart-item {
+    width: 30px;
+  }
+
+  .attempts-left-section, .score-section {
+    font-size: 1rem;
+    padding-top: 10px;
+  }
+
+  .game-main-content {
+    flex-direction: column;
+    margin-bottom: 0;
+  }
+
+  .country-container {
+    display: block;
+    width: 100%;
+    margin: 0;
+    height: 70%;
+  }
+
+  .country-flag {
+    margin: 0;
+    padding-top: 0;
+  }
+
+  .country-flag-image {
+    max-height: 200px;
+  }
+
+  .country-name-wrapper {
+    padding-left: 10px;
+    padding-right: 0;
+  }
+
+  .country-title, .capital-wrapper, .capital-name {
+    width: 100%;
+    font-size: 1.5rem;
+    padding-top: 0;
+  }
+  
+  .letter-generator input {
+    height: 35px;
+    width: 36px;
+    border: 3px solid #e13707;
+    font-size: 1.1rem;
+  }
+
+  .capital-wrapper {
+    padding-bottom: 0;
+  }
+
+  .instruction-and-action {
+    display: flex;
+    height: 50%;
+  } */
+
+  /* .game-main-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
+    max-height: 200px;
+  }
+  
+  .home-button {
+    text-decoration: none;
+    text-align: center;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+  } */
+/* } */

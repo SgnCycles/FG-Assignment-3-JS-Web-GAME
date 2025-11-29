@@ -24,7 +24,6 @@ hintButton.addEventListener("click", () => {
   guessInput.focus();
   if (hintUsed) return; 
   hintPenalty();
-  // hintUsed = true;
 })
 
 resetButton.addEventListener("click", () => {
