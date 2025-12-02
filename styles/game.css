@@ -12,7 +12,6 @@
   padding: 15px;
 }
 
-
 .life-score {
   width: 15%;
   display: flex;
@@ -128,7 +127,6 @@
   border: 5px solid #046014;
 }
 
-/* do I need it? */
 .letter-circle.present {
   background-color: #cae217;
 }
@@ -143,7 +141,6 @@
 }
 
 .typing-input {
-  /* what most games do to hide input */
   left: -9999px; 
   position: absolute;
 }
@@ -152,7 +149,7 @@
   display: inline-block;
   width: 0;
   height: 0;
-  margin: 0 10px;  /* This creates the space between words */
+  margin: 0 10px;
   padding: 0;
   background-color: transparent;
   border: none;
@@ -189,6 +186,10 @@
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.action-image-container-mobile.active{
+  display: none;
 }
 
 .action-image-container, .girl-correct-image, .girl-incorrect-image, .you-won-image, .you-loose-image {
@@ -251,8 +252,12 @@
   box-shadow: 0 2px #000;
 }
 
+.action-menu-mobile {
+  display: none;
+}
 
-@media (max-width: 600px) {
+/* For mobile phones */
+@media (max-width: 767px) {
 
   .game-body {
     padding: 0;
@@ -260,8 +265,11 @@
 
   .header {
     flex-direction: column;
-    align-items: space-between;
     margin: 0;
+  }
+
+  .life-score, .attempts-left-section, .score-section {
+    padding-bottom: 10px;
   }
 
   .heart-item {
@@ -278,7 +286,7 @@
     margin-bottom: 0;
   }
 
-  .country-container {
+  .country-container, .instruction-and-action {
     width: 100%;
     margin: 0;
   } 
@@ -286,6 +294,7 @@
   .country-flag {
     margin: 0;
     padding-top: 0;
+    position: relative;
   }
 
   .country-flag-image {
@@ -297,17 +306,29 @@
     padding-right: 0;
   }
 
+  .country-flag, .country-title, .capital-title, .country-name-wrapper, .capital-name-wrapper{
+    width: 100%;
+  }
+
   .country-title, .capital-wrapper, .capital-name {
     width: 100%;
-    font-size: 1.5rem;
-    padding-top: 0;
+    font-size: 1.3rem;
+    padding-top: 10px;
+  }
+
+  .capital-wrapper {
+    margin-bottom: 24px;
   }
   
   .letter-generator input {
-    height: 35px;
-    width: 36px;
-    border: 3px solid #e13707;
-    font-size: 1.1rem;
+    height: 25px;
+    width: 26px;
+    border: 2px solid #e13707;
+    font-size: 0.8rem;
+  }
+
+  .letter-circle.correct {
+    border:2px solid #046014;
   }
 
   .capital-wrapper {
@@ -320,8 +341,29 @@
   }
 
   .instruction-and-action {
+    padding: 0 10px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
+    justify-content: flex-end;
+  }
+
+  .instruction p{
+    font-size: 0.6rem;
+  }
+
+  .action-image-container.active {
+    display: none;
+  }
+  
+  .action-image-container-mobile.active{
+    display: flex;
+    position: absolute;
+    justify-content: flex-end;
+    height: 100%;
     width: 100%;
-    margin: 10px;
+    z-index: 10;
+    pointer-events: none;
   }
 
   .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
@@ -329,17 +371,19 @@
   }
 
   .action-menu {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    width: 100%;
-    justify-items: center;
+    display: none;
+  }
+
+  .action-menu-mobile {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-around;
   }
 
   .action-button, .home-button {
-    width: 100px;
+    width: 60px;
     font-size: 0.7rem;
-    padding: 10px 0;
+    padding: 5px 0;
     text-shadow: -1px -1px 0 #000;
   }
   
@@ -350,91 +394,97 @@
     justify-content: center;
     align-items: center;
   }
+
+  .action-button img {
+    width: 25px;
+    height: auto;
+  }
+
+  .footer {
+    padding: 20px;
+  }
+
+  .author {
+    font-size: 0.7rem;
+  }
+
+  .action-button:hover, .home-button:hover  {
+    background-color: var(--button-color);
+  }
 }
 
-/* for laptop */
-/* @media (min-width: 601px) {
+/* for tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
 
-  .game-body {
+  .header {
     padding: 0;
   }
 
-  .header {
-    margin: 0;
-    margin-bottom: 15px;
-  }
-
   .heart-item {
-    width: 30px;
+    width: 40px;
   }
 
   .attempts-left-section, .score-section {
-    font-size: 1rem;
+    font-size: 1.3rem;
     padding-top: 10px;
   }
 
   .game-main-content {
-    flex-direction: column;
-    margin-bottom: 0;
+   flex-direction: column;
+   margin-bottom: 0;
   }
 
-  .country-container {
-    display: block;
+  .country-container, .instruction-and-action {
     width: 100%;
     margin: 0;
-    height: 70%;
+  } 
+
+  .instruction-and-action {
+    justify-content: flex-end;
   }
 
   .country-flag {
     margin: 0;
-    padding-top: 0;
+    padding: 25px 0;
+    position: relative;
   }
 
   .country-flag-image {
-    max-height: 200px;
+    max-height: 350px;
   }
 
-  .country-name-wrapper {
-    padding-left: 10px;
-    padding-right: 0;
+  .instruction {
+    margin-bottom: 30px;
   }
 
-  .country-title, .capital-wrapper, .capital-name {
+  .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
+    max-height: 400px;
+  }
+
+  .action-menu {
     width: 100%;
-    font-size: 1.5rem;
-    padding-top: 0;
-  }
-  
-  .letter-generator input {
-    height: 35px;
-    width: 36px;
-    border: 3px solid #e13707;
-    font-size: 1.1rem;
+    flex-wrap: nowrap;
   }
 
-  .capital-wrapper {
-    padding-bottom: 0;
+  .action-button:hover, .home-button:hover  {
+    background-color: var(--button-color);
+    color: whitesmoke;
   }
 
-  .instruction-and-action {
+  .action-image-container.active {
+    display: none;
+  } 
+  .action-image-container-mobile.active{
     display: flex;
-    height: 50%;
-  } */
-
-  /* .game-main-content {
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    justify-content: flex-end;
+    height: 100%;
+    width: 100%;
+    z-index: 10;
+    pointer-events: none;
   }
 
   .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
     max-height: 200px;
   }
-  
-  .home-button {
-    text-decoration: none;
-    text-align: center;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-  } */
-/* } */
+}
