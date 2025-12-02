@@ -6,7 +6,6 @@ export const hintPenalty = () => {
   document.querySelector(".capital-name").style.display = "none";
   return;
   }
-  //otherwise - apply a hint and do the penalty.
   hintUsed = true;
   attemptsLeft -= 2;
   attemptsCounter.textContent = attemptsLeft;
@@ -36,23 +35,33 @@ export const showCountry = () => {
   guess.focus();
   const hintCapital = document.querySelector(".capital-name");
   hintCapital.textContent = "";
+
+  const countryGirlImageMobile = document.querySelector(".action-image-container-mobile .country-girl-image");
+  countryGirlImageMobile.classList.remove("hide");
+
+  setTimeout(() => {
+    countryGirlImageMobile.classList.add("hide");
+  }, 2000);
 };
 
 const scoreCounter = document.querySelector("#score-counter");
 const attemptsCounter = document.querySelector("#attempts-counter");
-const correctAnswerMessage = document.querySelector(".girl-correct-image");
-const countryGirlImage = document.querySelector(".country-girl-image");
-const wrongAnswerMessage = document.querySelector(".girl-incorrect-image");
-const endGameMessage = document.querySelector(".you-loose-image");
 const livesLostContainer = document.querySelector(".life-score");
-let inputLetters = document.querySelector(".letter-generator");
+const countryGirlImage = document.querySelectorAll(".country-girl-image");
+const correctAnswerMessage = document.querySelectorAll(".girl-correct-image");
+const wrongAnswerMessage = document.querySelectorAll(".girl-incorrect-image");
+const endGameMessage = document.querySelectorAll(".you-loose-image");
+const youWonMessage = document.querySelectorAll(".you-won-image");
 let guess = document.querySelector(".typing-input");
+let inputLetters = document.querySelector(".letter-generator");
+let lives;
 let score = 0;
 scoreCounter.textContent = score;
-let lives;
 let attemptsLeft;
+let currentCountryName;
 let remainingCountries = Array.from(COUNTRIES);
 hintUsed = false;
+let gameOver = false;
 
 // FUNCTION - PICKING A RANDOM COUNTRY
 const randomCountry = () => {
@@ -66,12 +75,12 @@ return currentCountry;
 const showCountryFlag = (currentCountry) => {
 let flagImage = document.querySelector(".country-flag-image");
 flagImage.src = currentCountry.flag;
-flagImage.alt = `${currentCountry.name} flag.`;
+flagImage.alt = `${currentCountry.name} flag`;
 };
 
 // FUNCTION - SHOW THE CHOSEN COUNTRY NAME CIRCLES
 const countryNameGenerator = (currentCountry) => {
-  let currentCountryName = currentCountry.name;
+  currentCountryName = currentCountry.name;
   let inputElement = "";
 
   console.log(currentCountryName); //testing
@@ -81,7 +90,7 @@ const countryNameGenerator = (currentCountry) => {
     if (countryLetter === " ") {
       inputElement += `<span class="letter-space"></span><br>`
     } else {
-      inputElement += `<input type="text" class="letter-circle" name="country-letter" readonly>`; //for each letter add a circle on hmtl
+      inputElement += `<input type="text" class="letter-circle" name="country-letter" readonly>`; 
     }
   };
   inputLetters.innerHTML = inputElement;
@@ -109,7 +118,6 @@ guess.addEventListener("input", () => {
   const currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "");
   let typedGuess = guess.value.toUpperCase();
   typedGuess = typedGuess.replace(/[^A-Z]/g, "");
-
   typedGuess = typedGuess.slice(0, currentCountryName.length);
   guess.value = typedGuess;
   updateCircles(typedGuess);
@@ -117,7 +125,8 @@ guess.addEventListener("input", () => {
 
 //FUNCTION - handling the enter key
 guess.addEventListener("keydown", (e) => {
-  let currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "").trim();
+  if (gameOver) return;
+  currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "").trim();
   const typedGuess = guess.value.toUpperCase().replace(/\s+/g, "").trim();
   if (e.key === "Enter" && typedGuess.length === currentCountryName.length) {
     checkGuess(typedGuess);
@@ -130,26 +139,29 @@ const showCorrectGuessMessage = () => {
   inputCircles.forEach(input => {
     input.classList.add("correct");
   });
-  correctAnswerMessage.classList.add("active");
-  countryGirlImage.classList.add("hide");
+
+  correctAnswerMessage.forEach(message => message.classList.add("active"));
+  countryGirlImage.forEach(image => image.classList.add("hide"));
 };
 
-//FUNCTION - hiding the correct message
+//FUNCTION- hiding the correct message
 const hideCorrectGuessMessage = () => {
-  correctAnswerMessage.classList.remove("active");
-  countryGirlImage.classList.remove("hide");
+  correctAnswerMessage.forEach(message => message.classList.remove("active"));
+  countryGirlImage.forEach(image => image.classList.remove("hide"));
 };
 
-//FUNCTION - showing the incorrect message
+//FUNCTION for the above - showing the incorrect message
 const showIncorrectMessage = () => {
-  wrongAnswerMessage.classList.add("active");
-  countryGirlImage.classList.add("hide");
+  wrongAnswerMessage.forEach(message => message.classList.add("active"));
+  countryGirlImage.forEach(image => image.classList.add("hide"));
 };
 
 //FUNCTION - hide the incorrect message
 const hideIncorrectMessage = () => {
-  wrongAnswerMessage.classList.remove("active");
-  countryGirlImage.classList.remove("hide");
+  wrongAnswerMessage.forEach(message => message.classList.remove("active"));
+  countryGirlImage.forEach(image => image.classList.remove("hide"));
+  const countryGirlImageMobile = document.querySelector(".action-image-container-mobile .country-girl-image");
+  countryGirlImageMobile.classList.add("hide");
 };
 
 //FUNCTION - updating the lives once the guess is failed
@@ -167,11 +179,11 @@ const correctGuessCase = () => {
   showCorrectGuessMessage();
 
   if (remainingCountries.length === 0) {
-    const youWonMessage = document.querySelector(".you-won-image");
+    gameOver = true;
     setTimeout(() => {
-      youWonMessage.classList.add("active");
-      countryGirlImage.classList.add("hide");
-      correctAnswerMessage.classList.remove("active");
+      youWonMessage.forEach(message => message.classList.add("active"));
+      countryGirlImage.forEach(image => image.classList.add("hide"));
+      correctAnswerMessage.forEach(correctMessage => correctMessage.classList.remove("active"));
     }, 2000);
 
     setTimeout(() => {
@@ -182,7 +194,7 @@ const correctGuessCase = () => {
     // set timeout when to show the next country,
     setTimeout(() => {
       hideCorrectGuessMessage();
-      countryGirlImage.classList.add("active");
+      countryGirlImage.forEach(image => image.classList.remove("hide"));
       showCountry();
     }, 1000);
 };
@@ -193,7 +205,7 @@ const incorrectGuessCase = () => {
   updateCircles("");
   guess.value = "";
   guess.focus();
-
+  
   showIncorrectMessage();
   setTimeout(() => {
    hideIncorrectMessage();
@@ -213,9 +225,9 @@ const lastAttemptGuess = () => {
     updateLivesTablo();
   
     if (lives === 0) {
-      endGameMessage.classList.add("active");
-      countryGirlImage.classList.add("hide");
-  
+      gameOver = true;
+      endGameMessage.forEach(message => message.classList.add("active"));
+      countryGirlImage.forEach(image => image.classList.add("hide"));
       setTimeout(() => {
         window.location.href = "./index.html";
       }, 4000);
