@@ -8,7 +8,7 @@
 .header {
   display: flex;
   justify-content: space-around;
-  margin: 30px 0 15px;
+  margin: 15px 0;
   padding: 15px;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .heart-item {
-  width: 50px;
+  width: 40px;
   height: auto;
 }
 
@@ -32,7 +32,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   color: whitesmoke;
   text-shadow: -2px -2px 0 #000;
 }
@@ -45,7 +45,6 @@
 
 .country-container, .instruction-and-action {
   margin: 0 30px;
-  height: 70vh;
 }
 
 .country-container {
@@ -90,7 +89,7 @@
 .country-title, .capital-wrapper {
   font-family: "Pixellari", monospace, sans-serif;
   text-transform: uppercase;
-  font-size: 2.3rem;
+  font-size: 2rem;
   color: whitesmoke;
   text-shadow: -2px -2px 0 #000;
   text-align: left;
@@ -108,13 +107,13 @@
 }
 
 .letter-generator input {
-  height: 55px;
-  width: 56px;
+  height: 45px;
+  width: 45px;
   margin: 4px;
   background-color: #E15201;
-  border: 5px solid #e13707;
+  border: 4px solid #e13707;
   border-radius: 50%;
-  font-size: 1.8rem;
+  font-size: 1.3rem;
   text-align: left;
   font-family: var(--website-main-font);
   color: whitesmoke;
@@ -124,7 +123,7 @@
 
 .letter-circle.correct {
   background-color: #0fd423;
-  border: 5px solid #046014;
+  border: 4px solid #046014;
 }
 
 .letter-circle.present {
@@ -133,7 +132,7 @@
 
 .letter-circle.show {
   background-color: #3217e2;
-  border: 5px solid #120460;
+  border: 4px solid #120460;
 }
 
 .country-name-content {
@@ -199,7 +198,7 @@
 .country-girl-image, .girl-correct-image.active, .girl-incorrect-image.active, .you-won-image.active, .you-loose-image.active {
   margin: auto 0;
   display: block;
-  max-height: 600px;
+  max-height: 500px;
   width: auto;
   max-width: 100%;
   height: auto;
@@ -217,14 +216,14 @@
 }
 
 .action-button, .home-button {
-  width: 150px;
+  width: 100px;
   border-radius: 7px;
   background-color: var(--button-color);
   color: whitesmoke;
   font-family: "Press Start 2P", monospace, sans-serif;
-  font-size: 1rem;
+  font-size: 0.8rem;
   letter-spacing: 3px;
-  padding: 15px 0;
+  padding: 10px;
   border: 4px solid #E15201;
   box-shadow: 3px 3px 0 #645e5e;
   text-transform: uppercase;
@@ -256,9 +255,7 @@
   display: none;
 }
 
-/* For mobile phones */
 @media (max-width: 767px) {
-
   .game-body {
     padding: 0;
   }
@@ -306,12 +303,11 @@
     padding-right: 0;
   }
 
-  .country-flag, .country-title, .capital-title, .country-name-wrapper, .capital-name-wrapper{
+  .country-flag, .country-title, .capital-title, .country-name-wrapper, .capital-name-wrapper, .country-title, .capital-wrapper, .capital-name{
     width: 100%;
   }
 
   .country-title, .capital-wrapper, .capital-name {
-    width: 100%;
     font-size: 1.3rem;
     padding-top: 10px;
   }
@@ -328,22 +324,20 @@
   }
 
   .letter-circle.correct {
-    border:2px solid #046014;
+    border: 2px solid #046014;
   }
 
   .capital-wrapper {
     padding-bottom: 0;
   }
 
-  .game-main-content {
+  .game-main-content, .instruction-and-action {
     display: flex;
     flex-direction: column;
   }
 
   .instruction-and-action {
     padding: 0 10px 10px;
-    display: flex;
-    flex-direction: column;
     align-items: space-between;
     justify-content: flex-end;
   }
@@ -413,9 +407,7 @@
   }
 }
 
-/* for tablet */
 @media (min-width: 768px) and (max-width: 1024px) {
-
   .header {
     padding: 0;
   }
