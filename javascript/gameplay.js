@@ -63,6 +63,11 @@ let remainingCountries = Array.from(COUNTRIES);
 hintUsed = false;
 let gameOver = false;
 
+document.addEventListener("pointerdown", (e) => {
+  e.preventDefault();
+  guess.focus({preventScroll:true});
+});
+
 // FUNCTION - PICKING A RANDOM COUNTRY
 const randomCountry = () => {
 let randomIndex = Math.floor(Math.random() * remainingCountries.length);
@@ -199,6 +204,7 @@ const correctGuessCase = () => {
     }, 1000);
 };
 
+//FUNCTION - handling the incorrect guess
 const incorrectGuessCase = () => {
   attemptsLeft--;
   attemptsCounter.textContent = attemptsLeft;
@@ -212,6 +218,7 @@ const incorrectGuessCase = () => {
   }, 1000);
 };
 
+//FUNCTION - handling the last attempt guess
 const lastAttemptGuess = () => {
   showIncorrectMessage();
   updateCircles(currentCountry.name.toUpperCase().replace(/\s+/g, ""));
@@ -240,7 +247,8 @@ const lastAttemptGuess = () => {
 //FUNCTION - mark correct letter green, other existing letters in yellow.
 const markLetters = (typedGuess, currentCountryName) => {
   const inputCircles = document.querySelectorAll(".letter-circle");
-  let correctLetters = [];
+  let remainingLetters = currentCountryName.split("");
+
   for (let i = 0; i < currentCountryName.length; i++) {
     inputCircles[i].classList.remove("correct", "present");
     if(typedGuess[i]) {
@@ -248,9 +256,19 @@ const markLetters = (typedGuess, currentCountryName) => {
     }
     if (typedGuess[i] === currentCountryName[i]) {
       inputCircles[i].classList.add("correct");
-      correctLetters[i] = typedGuess[i];
-    } else if (currentCountryName.includes(typedGuess[i])){
-      inputCircles[i].classList.add("present");
+     remainingLetters[i] = null;
+    }
+  }
+
+  for (let j = 0; j < currentCountryName.length; j++) {
+    if (inputCircles[j].classList.contains("correct")) continue;
+    const guessedLetter = typedGuess[j];
+    if (!guessedLetter) continue;
+
+    const letterIndex = remainingLetters.indexOf(guessedLetter);
+    if (letterIndex !== -1) {
+      inputCircles[j].classList.add("present");
+      remainingLetters[letterIndex] = null;
     }
   }
 };

@@ -192,7 +192,7 @@ const COUNTRIES = [
   {name: "Uruguay", capital: "Montevideo", flag: "./flag_images/uruguay.png"},
   {name: "Uzbekistan", capital: "Tashkent", flag: "./flag_images/uzbekistan.png"},
   {name: "Vanuatu", capital: "Port Vila", flag: "./flag_images/vanuatu.png"},
-  {name: "Vatican City", capital: "is not existing.", flag: "./flag_images/vatican_city.png"},
+  {name: "Vatican City", capital: "does not exist.", flag: "./flag_images/vatican_city.png"},
   {name: "Venezuela", capital: "Caracas", flag: "./flag_images/venezuela.png"},
   {name: "Vietnam", capital: "Hanoi", flag: "./flag_images/vietnam.png"},
   {name: "Yemen", capital: "Sanaa", flag: "./flag_images/yemen.png"},

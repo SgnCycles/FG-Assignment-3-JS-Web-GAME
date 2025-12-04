@@ -36,11 +36,9 @@ resetButtons.forEach(resetButton => {
     const livesContainer = document.querySelector(".life-score");
     const attemptsScore = document.querySelector("#attempts-counter");
     const scoreCounter = document.querySelector("#score-counter");
-  
     attemptsScore.textContent = 5;
     scoreCounter.textContent = 0;
     livesContainer.innerHTML = "";
-  
     livesGenerator();
     showCountry();
   })
