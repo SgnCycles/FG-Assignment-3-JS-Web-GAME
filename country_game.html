@@ -16,7 +16,7 @@
     <div class="life-score">
     </div>
     <div class="attempts-left-section">
-      <div class="attempts-title">Atempts left:</div>
+      <div class="attempts-title">ATTEMPTS LEFT:</div>
       <div class="attempts-counter"><span id="attempts-counter"></span></div>
     </div>
     <div class="score-section">
@@ -28,7 +28,6 @@
     <div class="country-container">
       <div class="country-flag">
         <img class="country-flag-image" height="400px" width="auto" alt="">
-              <!-- mobile version -->
         <div class="action-image-container-mobile active">
           <img class="country-girl-image" src="./website_images/country_girl.png" alt="girl"/>
           <img class="girl-correct-image" src="./website_images/correct.png" alt="correct answer"/>
@@ -36,12 +35,11 @@
           <img class="you-won-image" src="./website_images/you_win_guy.png" alt="you won"/>
           <img class="you-loose-image" src="./website_images/you_loose_skull.png" alt="you loose"/>
         </div>
-        <!-- mobile version -->
       </div>
       <div class="country-title">Country:</div>
       <div class="country-name-wrapper">
         <div class="country-name-content">
-          <input type="text" class="typing-input" name="country-name-input">
+          <input type="text" class="typing-input" id="input-focus" name="country-name-input">
           <div class="letter-generator"></div>
         </div>
       </div>
@@ -74,7 +72,6 @@
         <button class="action-button hint-button">Hint</button>
         <button class="action-button rules-button">Rules</button>
       </div>
-<!-- action menu - mobile -->
       <div class="action-menu-mobile">
         <a class="action-button home-button" href="/index.html">
           <img src="./icons/home_icon.png"/>
@@ -89,7 +86,6 @@
           <img src="./icons/rules_icon.png"/>
         </button>
       </div>
-<!-- action menu - mobile -->
     </div>
   </main>
   <footer class="footer">
