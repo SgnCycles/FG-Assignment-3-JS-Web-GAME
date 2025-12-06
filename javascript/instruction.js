@@ -18,7 +18,7 @@ rulesButtons.forEach(rulesButton => {
     }
     guessInput.focus();
   })
-})
+});
 
 hintButtons.forEach(hintButton => {
   hintButton.addEventListener("click", () => {
@@ -28,7 +28,7 @@ hintButtons.forEach(hintButton => {
     if (hintUsed) return; 
     hintPenalty();
   })
-})
+});
 
 resetButtons.forEach(resetButton => {
   resetButton.addEventListener("click", () => {
@@ -42,4 +42,4 @@ resetButtons.forEach(resetButton => {
     livesGenerator();
     showCountry();
   })
-})
+});

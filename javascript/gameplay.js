@@ -68,7 +68,6 @@ document.addEventListener("pointerdown", (e) => {
   guess.focus({preventScroll:true});
 });
 
-// FUNCTION - PICKING A RANDOM COUNTRY
 const randomCountry = () => {
 let randomIndex = Math.floor(Math.random() * remainingCountries.length);
 currentCountry = remainingCountries[randomIndex];
@@ -76,19 +75,15 @@ remainingCountries = remainingCountries.filter(country => country !== currentCou
 return currentCountry; 
 };
 
-// FUNCTION - SHOW THE CHOSEN COUNTRY FLAG
 const showCountryFlag = (currentCountry) => {
 let flagImage = document.querySelector(".country-flag-image");
 flagImage.src = currentCountry.flag;
 flagImage.alt = `${currentCountry.name} flag`;
 };
 
-// FUNCTION - SHOW THE CHOSEN COUNTRY NAME CIRCLES
 const countryNameGenerator = (currentCountry) => {
   currentCountryName = currentCountry.name;
   let inputElement = "";
-
-  console.log(currentCountryName); //testing
 
   for (let i = 0; i <currentCountryName.length; i++) {
     let countryLetter = currentCountryName[i].toLowerCase();
@@ -101,7 +96,6 @@ const countryNameGenerator = (currentCountry) => {
   inputLetters.innerHTML = inputElement;
 };
 
-// FUNCTION - generate the country name letter circles with guess
 const updateCircles = (typedGuess) => {
   const circles = inputLetters.querySelectorAll(".letter-circle");
   const inputCircles = document.querySelectorAll(".letter-circle");
@@ -118,7 +112,6 @@ const updateCircles = (typedGuess) => {
   }
 };
 
-//FUNCTION - handling the input
 guess.addEventListener("input", () => {
   const currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "");
   let typedGuess = guess.value.toUpperCase();
@@ -128,7 +121,6 @@ guess.addEventListener("input", () => {
   updateCircles(typedGuess);
 });
 
-//FUNCTION - handling the enter key
 guess.addEventListener("keydown", (e) => {
   if (gameOver) return;
   currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "").trim();
@@ -138,7 +130,6 @@ guess.addEventListener("keydown", (e) => {
   }
 });
 
-//FUNCTION - handling and showing a correct guess
 const showCorrectGuessMessage = () => {
   const inputCircles = inputLetters.querySelectorAll(".letter-circle");
   inputCircles.forEach(input => {
@@ -149,19 +140,16 @@ const showCorrectGuessMessage = () => {
   countryGirlImage.forEach(image => image.classList.add("hide"));
 };
 
-//FUNCTION- hiding the correct message
 const hideCorrectGuessMessage = () => {
   correctAnswerMessage.forEach(message => message.classList.remove("active"));
   countryGirlImage.forEach(image => image.classList.remove("hide"));
 };
 
-//FUNCTION for the above - showing the incorrect message
 const showIncorrectMessage = () => {
   wrongAnswerMessage.forEach(message => message.classList.add("active"));
   countryGirlImage.forEach(image => image.classList.add("hide"));
 };
 
-//FUNCTION - hide the incorrect message
 const hideIncorrectMessage = () => {
   wrongAnswerMessage.forEach(message => message.classList.remove("active"));
   countryGirlImage.forEach(image => image.classList.remove("hide"));
@@ -169,7 +157,6 @@ const hideIncorrectMessage = () => {
   countryGirlImageMobile.classList.add("hide");
 };
 
-//FUNCTION - updating the lives once the guess is failed
 const updateLivesTablo = () => {
   const heartItem = document.querySelectorAll(".heart-item");
   heartItem[lives - 1].style.display = "none";
@@ -177,7 +164,6 @@ const updateLivesTablo = () => {
   lives--;
 };
 
-//FUNCTION - if the guess is correct
 const correctGuessCase = () => {
   score+=attemptsLeft;
   scoreCounter.textContent = score;
@@ -196,7 +182,6 @@ const correctGuessCase = () => {
     }, 4000);
     return;
   } 
-    // set timeout when to show the next country,
     setTimeout(() => {
       hideCorrectGuessMessage();
       countryGirlImage.forEach(image => image.classList.remove("hide"));
@@ -204,7 +189,6 @@ const correctGuessCase = () => {
     }, 1000);
 };
 
-//FUNCTION - handling the incorrect guess
 const incorrectGuessCase = () => {
   attemptsLeft--;
   attemptsCounter.textContent = attemptsLeft;
@@ -218,7 +202,6 @@ const incorrectGuessCase = () => {
   }, 1000);
 };
 
-//FUNCTION - handling the last attempt guess
 const lastAttemptGuess = () => {
   showIncorrectMessage();
   updateCircles(currentCountry.name.toUpperCase().replace(/\s+/g, ""));
@@ -244,7 +227,6 @@ const lastAttemptGuess = () => {
   }, 2000);
 };
 
-//FUNCTION - mark correct letter green, other existing letters in yellow.
 const markLetters = (typedGuess, currentCountryName) => {
   const inputCircles = document.querySelectorAll(".letter-circle");
   let remainingLetters = currentCountryName.split("");
@@ -273,7 +255,6 @@ const markLetters = (typedGuess, currentCountryName) => {
   }
 };
 
-//FUNCTION - checking the guess
 const checkGuess = (typedGuess) => {
   const typedGuessToCheck = typedGuess.toLowerCase().replace(/\s+/g, "");
   const currentCountryToCheck = currentCountry.name.toLowerCase().replace(/\s+/g, "");
@@ -289,6 +270,5 @@ const checkGuess = (typedGuess) => {
   }
 };
 
-//START THE GAME
 showCountry();
 livesGenerator();
