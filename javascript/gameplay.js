@@ -1,10 +1,11 @@
 export let currentCountry;
 export let hintUsed = false;
+
 export const hintPenalty = () => {
   if (hintUsed) return;
   if (attemptsLeft <= 2) {
-  document.querySelector(".capital-name").style.display = "none";
-  return;
+    document.querySelector(".capital-name").style.display = "none";
+    return;
   }
   hintUsed = true;
   attemptsLeft -= 2;
@@ -36,7 +37,9 @@ export const showCountry = () => {
   const hintCapital = document.querySelector(".capital-name");
   hintCapital.textContent = "";
 
-  const countryGirlImageMobile = document.querySelector(".action-image-container-mobile .country-girl-image");
+  const countryGirlImageMobile = document.querySelector(
+    ".action-image-container-mobile .country-girl-image",
+  );
   countryGirlImageMobile.classList.remove("hide");
 
   setTimeout(() => {
@@ -65,34 +68,36 @@ let gameOver = false;
 
 document.addEventListener("pointerdown", (e) => {
   e.preventDefault();
-  guess.focus({preventScroll:true});
+  guess.focus({ preventScroll: true });
 });
 
 const randomCountry = () => {
-let randomIndex = Math.floor(Math.random() * remainingCountries.length);
-currentCountry = remainingCountries[randomIndex];
-remainingCountries = remainingCountries.filter(country => country !== currentCountry);
-return currentCountry; 
+  let randomIndex = Math.floor(Math.random() * remainingCountries.length);
+  currentCountry = remainingCountries[randomIndex];
+  remainingCountries = remainingCountries.filter(
+    (country) => country !== currentCountry,
+  );
+  return currentCountry;
 };
 
 const showCountryFlag = (currentCountry) => {
-let flagImage = document.querySelector(".country-flag-image");
-flagImage.src = currentCountry.flag;
-flagImage.alt = `${currentCountry.name} flag`;
+  let flagImage = document.querySelector(".country-flag-image");
+  flagImage.src = currentCountry.flag;
+  flagImage.alt = `${currentCountry.name} flag`;
 };
 
 const countryNameGenerator = (currentCountry) => {
   currentCountryName = currentCountry.name;
   let inputElement = "";
 
-  for (let i = 0; i <currentCountryName.length; i++) {
+  for (let i = 0; i < currentCountryName.length; i++) {
     let countryLetter = currentCountryName[i].toLowerCase();
     if (countryLetter === " ") {
-      inputElement += `<span class="letter-space"></span><br>`
+      inputElement += `<span class="letter-space"></span><br>`;
     } else {
-      inputElement += `<input type="text" class="letter-circle" name="country-letter" readonly>`; 
+      inputElement += `<input type="text" class="letter-circle" name="country-letter" readonly>`;
     }
-  };
+  }
   inputLetters.innerHTML = inputElement;
 };
 
@@ -108,22 +113,25 @@ const updateCircles = (typedGuess) => {
       circles[i].value = "";
       inputCircles[i].classList.remove("present");
       inputCircles[i].classList.remove("correct");
-    } 
+    }
   }
 };
 
 guess.addEventListener("input", () => {
-  const currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "");
-  let typedGuess = guess.value.toUpperCase();
-  typedGuess = typedGuess.replace(/[^A-Z]/g, "");
-  typedGuess = typedGuess.slice(0, currentCountryName.length);
+  const currentCountryName = currentCountry.name
+    .toUpperCase()
+    .replace(/\s+/g, "");
+  let typedGuess = guess.value.toUpperCase().replace(/[^A-Z]/g, "").slice(0, currentCountryName.length);
   guess.value = typedGuess;
   updateCircles(typedGuess);
 });
 
 guess.addEventListener("keydown", (e) => {
   if (gameOver) return;
-  currentCountryName = currentCountry.name.toUpperCase().replace(/\s+/g, "").trim();
+  currentCountryName = currentCountry.name
+    .toUpperCase()
+    .replace(/\s+/g, "")
+    .trim();
   const typedGuess = guess.value.toUpperCase().replace(/\s+/g, "").trim();
   if (e.key === "Enter" && typedGuess.length === currentCountryName.length) {
     checkGuess(typedGuess);
@@ -132,28 +140,30 @@ guess.addEventListener("keydown", (e) => {
 
 const showCorrectGuessMessage = () => {
   const inputCircles = inputLetters.querySelectorAll(".letter-circle");
-  inputCircles.forEach(input => {
+  inputCircles.forEach((input) => {
     input.classList.add("correct");
   });
 
-  correctAnswerMessage.forEach(message => message.classList.add("active"));
-  countryGirlImage.forEach(image => image.classList.add("hide"));
+  correctAnswerMessage.forEach((message) => message.classList.add("active"));
+  countryGirlImage.forEach((image) => image.classList.add("hide"));
 };
 
 const hideCorrectGuessMessage = () => {
-  correctAnswerMessage.forEach(message => message.classList.remove("active"));
-  countryGirlImage.forEach(image => image.classList.remove("hide"));
+  correctAnswerMessage.forEach((message) => message.classList.remove("active"));
+  countryGirlImage.forEach((image) => image.classList.remove("hide"));
 };
 
 const showIncorrectMessage = () => {
-  wrongAnswerMessage.forEach(message => message.classList.add("active"));
-  countryGirlImage.forEach(image => image.classList.add("hide"));
+  wrongAnswerMessage.forEach((message) => message.classList.add("active"));
+  countryGirlImage.forEach((image) => image.classList.add("hide"));
 };
 
 const hideIncorrectMessage = () => {
-  wrongAnswerMessage.forEach(message => message.classList.remove("active"));
-  countryGirlImage.forEach(image => image.classList.remove("hide"));
-  const countryGirlImageMobile = document.querySelector(".action-image-container-mobile .country-girl-image");
+  wrongAnswerMessage.forEach((message) => message.classList.remove("active"));
+  countryGirlImage.forEach((image) => image.classList.remove("hide"));
+  const countryGirlImageMobile = document.querySelector(
+    ".action-image-container-mobile .country-girl-image",
+  );
   countryGirlImageMobile.classList.add("hide");
 };
 
@@ -165,28 +175,30 @@ const updateLivesTablo = () => {
 };
 
 const correctGuessCase = () => {
-  score+=attemptsLeft;
+  score += attemptsLeft;
   scoreCounter.textContent = score;
   showCorrectGuessMessage();
 
   if (remainingCountries.length === 0) {
     gameOver = true;
     setTimeout(() => {
-      youWonMessage.forEach(message => message.classList.add("active"));
-      countryGirlImage.forEach(image => image.classList.add("hide"));
-      correctAnswerMessage.forEach(correctMessage => correctMessage.classList.remove("active"));
+      youWonMessage.forEach((message) => message.classList.add("active"));
+      countryGirlImage.forEach((image) => image.classList.add("hide"));
+      correctAnswerMessage.forEach((correctMessage) =>
+        correctMessage.classList.remove("active"),
+      );
     }, 2000);
 
     setTimeout(() => {
       window.location.href = "./index.html";
     }, 4000);
     return;
-  } 
-    setTimeout(() => {
-      hideCorrectGuessMessage();
-      countryGirlImage.forEach(image => image.classList.remove("hide"));
-      showCountry();
-    }, 1000);
+  }
+  setTimeout(() => {
+    hideCorrectGuessMessage();
+    countryGirlImage.forEach((image) => image.classList.remove("hide"));
+    showCountry();
+  }, 1000);
 };
 
 const incorrectGuessCase = () => {
@@ -195,10 +207,10 @@ const incorrectGuessCase = () => {
   updateCircles("");
   guess.value = "";
   guess.focus();
-  
+
   showIncorrectMessage();
   setTimeout(() => {
-   hideIncorrectMessage();
+    hideIncorrectMessage();
   }, 1000);
 };
 
@@ -206,18 +218,18 @@ const lastAttemptGuess = () => {
   showIncorrectMessage();
   updateCircles(currentCountry.name.toUpperCase().replace(/\s+/g, ""));
   const inputCircles = inputLetters.querySelectorAll(".letter-circle");
-  inputCircles.forEach(input => {
+  inputCircles.forEach((input) => {
     input.classList.add("show");
   });
 
   setTimeout(() => {
     hideIncorrectMessage();
     updateLivesTablo();
-  
+
     if (lives === 0) {
       gameOver = true;
-      endGameMessage.forEach(message => message.classList.add("active"));
-      countryGirlImage.forEach(image => image.classList.add("hide"));
+      endGameMessage.forEach((message) => message.classList.add("active"));
+      countryGirlImage.forEach((image) => image.classList.add("hide"));
       setTimeout(() => {
         window.location.href = "./index.html";
       }, 4000);
@@ -233,12 +245,12 @@ const markLetters = (typedGuess, currentCountryName) => {
 
   for (let i = 0; i < currentCountryName.length; i++) {
     inputCircles[i].classList.remove("correct", "present");
-    if(typedGuess[i]) {
+    if (typedGuess[i]) {
       inputCircles[i].value = typedGuess[i].toUpperCase();
     }
     if (typedGuess[i] === currentCountryName[i]) {
       inputCircles[i].classList.add("correct");
-     remainingLetters[i] = null;
+      remainingLetters[i] = null;
     }
   }
 
@@ -257,11 +269,12 @@ const markLetters = (typedGuess, currentCountryName) => {
 
 const checkGuess = (typedGuess) => {
   const typedGuessToCheck = typedGuess.toLowerCase().replace(/\s+/g, "");
-  const currentCountryToCheck = currentCountry.name.toLowerCase().replace(/\s+/g, "");
+  const currentCountryToCheck = currentCountry.name
+    .toLowerCase()
+    .replace(/\s+/g, "");
 
   if (typedGuessToCheck === currentCountryToCheck) {
     correctGuessCase();
-
   } else if (attemptsLeft > 1) {
     incorrectGuessCase();
     markLetters(typedGuessToCheck, currentCountryToCheck);

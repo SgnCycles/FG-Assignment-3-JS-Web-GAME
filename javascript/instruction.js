@@ -1,4 +1,10 @@
-import {currentCountry, hintPenalty, hintUsed, livesGenerator, showCountry} from "./gameplay.js";
+import {
+  currentCountry,
+  hintPenalty,
+  hintUsed,
+  livesGenerator,
+  showCountry,
+} from "./gameplay.js";
 
 const guessInput = document.querySelector(".typing-input");
 const rulesButtons = document.querySelectorAll(".rules-button");
@@ -7,7 +13,7 @@ const resetButtons = document.querySelectorAll(".reset-button");
 let rulesContent = document.querySelector(".instruction");
 let actionImage = document.querySelector(".action-image-container");
 
-rulesButtons.forEach(rulesButton => {
+rulesButtons.forEach((rulesButton) => {
   rulesButton.addEventListener("click", () => {
     if (actionImage.classList.contains("active")) {
       actionImage.classList.remove("active");
@@ -17,20 +23,20 @@ rulesButtons.forEach(rulesButton => {
       rulesContent.classList.remove("active");
     }
     guessInput.focus();
-  })
+  });
 });
 
-hintButtons.forEach(hintButton => {
+hintButtons.forEach((hintButton) => {
   hintButton.addEventListener("click", () => {
     let hintCapital = document.querySelector(".capital-name");
     hintCapital.textContent = currentCountry.capital;
     guessInput.focus();
-    if (hintUsed) return; 
+    if (hintUsed) return;
     hintPenalty();
-  })
+  });
 });
 
-resetButtons.forEach(resetButton => {
+resetButtons.forEach((resetButton) => {
   resetButton.addEventListener("click", () => {
     guessInput.focus();
     const livesContainer = document.querySelector(".life-score");
@@ -41,5 +47,5 @@ resetButtons.forEach(resetButton => {
     livesContainer.innerHTML = "";
     livesGenerator();
     showCountry();
-  })
+  });
 });
